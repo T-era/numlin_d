@@ -60,7 +60,7 @@ class Session {
             int num = parse!(int)(temp);
             field.cells[y][x].setNumber(num);
         } catch (Exception ex) {
-            writeln("Parse error: ", input);
+            writeln("Parse error: ", input, ex);
         }
         return true;
     }

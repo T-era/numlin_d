@@ -1,6 +1,7 @@
 import std.conv;
 import std.algorithm;
 import std.array;
+import std.exception;
 
 import common;
 import wall;
@@ -34,8 +35,9 @@ class Cross {
             }
             if (newState == State.Wall
                 && this.minWallId() > 1) {
-                foreach (Wall w; unknownWalls) {
-                    if (this.minWallId() > 1
+                foreach (Wall w; this.walls()) {
+                    if (state(w) == State.Unknown
+                        && this.minWallId() > 1
                         && w.isBetweenSameId()) {
                         w.setState(State.Empty);
                     }

@@ -13,6 +13,7 @@ class Field {
     Cross[][] crosses;
 
     void setSize(int width, int height) {
+        this.maxWallId = 0;
         this.width = width;
         this.height = height;
         cells = doubleArray(width, height, (x,y)=> new Cell(this, x, y));
@@ -56,7 +57,7 @@ class Field {
             && 0 <= y && y < height) {
             return this.verWalls[y][x];
         } else {
-            return null; // TO
+            return null;
         }
     }
     Wall getHorWall(int x, int y) {

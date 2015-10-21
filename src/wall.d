@@ -2,6 +2,7 @@ import std.conv;
 import std.algorithm;
 import std.array;
 import std.exception;
+import std.string;
 
 import common;
 import field;
@@ -33,8 +34,9 @@ abstract class Wall {
     }
     void setState(State newState)
     in {
-        enforce(this._state == State.Unknown || this._state == newState);
-        enforce(newState != State.Unknown);
+        enforce(this._state == State.Unknown || this._state == newState
+            , { format("Exp %s->%s (%d,%d)", this._state, newState, this.x, this.y); });
+        enforce(newState != State.Unknown, "%s".format(newState));
     }
     body {
         if (this._state != newState) {
@@ -83,7 +85,7 @@ abstract class Wall {
     }
     void setGrand()
     in {
-        enforce(state(this) == State.Empty);
+        enforce(state(this) == State.Empty, "%s isn't Empty (%d,%d)".format(this._state, x, y));
     }
     body {
         if (! this.grand) {
@@ -113,7 +115,7 @@ abstract class Wall {
         int[] minIds = this.getBothCrosses()
             .map!(c=> c.minWallId())
             .array();
-        enforce(minIds.length == 2);
+        enforce(minIds.length == 2, "Length!!?");
         return minIds[0] == minIds[1] && minIds[0] != -1;
     }
     override string toString() {

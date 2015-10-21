@@ -120,9 +120,30 @@ unittest {
         assert(field.verWalls[3][5].state == State.Wall);
         assert(field.verWalls[3][6].state == State.Wall);
     }
+    void complex1() {
+        Field field = createField(4,4);
+        set(field, 1, 1, 3);
+        set(field, 0, 2, 0);
+        set(field, 1, 2, 2);
+        set(field, 0, 3, 1);
+        DeadEnd.bury(field);
+
+        assert(toStateList(field.verWalls) == [
+            [u,u,u,u,u],
+            [e,w,u,u,w],
+            [e,e,e,w,w],
+            [e,w,e,e,w]]);
+        assert(toStateList(field.horWalls) == [
+            [u,u,u,u],
+            [u,u,u,u],
+            [e,w,u,e],
+            [e,w,w,e],
+            [e,w,w,w]]);
+    }
     test1();
     test2();
     testMiniLoop();
     testGranded();
     testDeadEnd();
+    complex1();
 }

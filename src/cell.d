@@ -2,6 +2,7 @@ import std.conv;
 import std.algorithm;
 import std.array;
 import std.exception;
+import std.string;
 
 import field;
 import wall;
@@ -23,12 +24,12 @@ class Cell {
     }
     void setNumber(int number)
     in {
-        enforce(this._number == -1);
-        enforce(number != -1);
+        enforce(this._number == -1, "%d != -1".format(this._number));
+        enforce(number != -1, "Illegal argument %d != -1".format(number));
     }
     body {
-        enforce(this._number == -1);
-        enforce(number != -1);
+        enforce(this._number == -1, "%d != -1".format(this._number));
+        enforce(number != -1, "Illegal argument %d != -1".format(number));
         this._number = number;
         this.numberDecided();
     }

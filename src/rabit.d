@@ -21,7 +21,7 @@ class RabitHead :Listener {
             Wall dest1,
             Wall dest2)
     in {
-        enforce(head !is null);
+        enforce(head !is null, "No head rbt");
     }
     body {
         this.head = head;
