@@ -124,4 +124,27 @@ class Field {
         }
         return ret;
     }
+
+    string answer() {
+        string ret = "";
+        for (int y = 0; y < 2 * height + 1; y ++) {
+            for (int x = 0; x < 2 * width + 1; x ++) {
+                if (y % 2) {
+                    if (x % 2) {
+                        ret ~= " ";
+                    } else {
+                        ret ~= verWalls[y / 2][x / 2].answer();
+                    }
+                } else {
+                    if (x % 2) {
+                        ret ~= horWalls[y / 2][x / 2].answer();
+                    } else {
+                        ret ~= "+";
+                    }
+                }
+            }
+            ret ~= "\n";
+        }
+        return ret;
+    }
 }

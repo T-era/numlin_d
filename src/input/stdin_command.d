@@ -12,7 +12,7 @@ import input.stdin_command_continuity;
 import input.stdin;
 
 interface Command {
-    static Command[] ALL = [new CommandContinuity(), new CommandShow(), new CommandReset(), new CommandBury(), new CommandQuit(), new CommandHelp()];
+    static Command[] ALL = [new CommandContinuity(), new CommandShow(), new CommandAnswer(), new CommandReset(), new CommandBury(), new CommandQuit(), new CommandHelp()];
     static int INDEX_HELP = 5;
 
     static Command read(string s)
@@ -71,6 +71,18 @@ class CommandReset :Command {
             writeln("Error");
         } else {
             resetField(field);
+        }
+        return true;
+    }
+}
+
+class CommandAnswer :Command {
+    string commandSign() { return "a"; }
+    bool apply(Field field, string args) {
+        if (args && args.length > 0) {
+            writeln("Error");
+        } else {
+            writeln(field.answer());
         }
         return true;
     }

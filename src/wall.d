@@ -132,6 +132,13 @@ abstract class Wall {
                 return this.getWallString();
         }
     }
+    string answer() {
+        if (this._state == State.Wall) {
+            return this.getWallString();
+        } else {
+            return " ";
+        }
+    }
 
     abstract Wall[] getParaWalls();
     abstract Cell[] getNeighborCells();

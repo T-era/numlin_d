@@ -18,6 +18,7 @@ class CommandHelp :Command {
             "r": "Reset & resize field map.",
             "q": "Quit proccess.",
             "s": "Show field map.",
+            "a": "Show wall as answer.",
             "b": "Run dead-end-bury proc."
         ];
     }
